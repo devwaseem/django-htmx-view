@@ -1,0 +1,19 @@
+<div id="todo-{{ todo.id }}"
+     style="margin-top: 12px;
+            display: flex"
+     hx-target="this"
+     hx-swap="outerHTML">
+    <input type="checkbox"
+           style="margin-right:12px"
+           hx-post="{% url 'todo->toggle' id=todo.id %}"
+           {% if todo.is_done %}checked{% endif %} />
+    <div>
+        {% if todo.is_done %}
+            <s>{{ todo.title }}</s>
+        {% else %}
+            {{ todo.title }}
+        {% endif %}
+    </div>
+    <button style="margin-left:12px"
+            hx-post="{% url 'todo->delete' id=todo.id %}">Delete</button>
+</div>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Example</title>
+        <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+    </head>
+    <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+        {% block form %}
+            <form hx-post="{% url 'todo->create' %}"
+                  hx-target="#todos"
+                  hx-swap="beforeend">
+                {% csrf_token %}
+                {{ form.as_table }}
+                <button>Add</button>
+            </form>
+        {% endblock %}
+        <hr />
+        <div id="todos">
+            {% for todo in todos %}
+                {% include "./todo_item.html" with todo=todo %}
+            {% endfor %}
+        </div>
+    </body>
+</html>

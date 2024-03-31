@@ -5,7 +5,7 @@
      hx-swap="outerHTML">
     <input type="checkbox"
            style="margin-right:12px"
-           hx-post="{% url 'todo->toggle' id=todo.id %}"
+           hx-post="{% url 'todo->toggle' todo_id=todo.id %}"
            {% if todo.is_done %}checked{% endif %} />
     <div>
         {% if todo.is_done %}
@@ -15,5 +15,5 @@
         {% endif %}
     </div>
     <button style="margin-left:12px"
-            hx-post="{% url 'todo->delete' id=todo.id %}">Delete</button>
+            hx-post="{% url 'todo->delete' todo_id=todo.id %}">Delete</button>
 </div>

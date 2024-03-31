@@ -1,10 +1,13 @@
 import inspect
-from typing import Callable, NamedTuple
+from typing import Any, Callable, NamedTuple, Type, TypeVar
 from uuid import UUID
 
 from django.http import HttpResponse
 from django.urls import URLPattern
 from django.urls import path as django_path
+from django.views import View
+
+T = TypeVar("T", bound=View)
 
 
 class UrlParameter(NamedTuple):
@@ -17,12 +20,12 @@ class UrlParameter(NamedTuple):
 
 class HTMXViewMixin:
     @classmethod
-    def htmx_urls(
-        cls,
+    def htmx_urls(  # type: ignore
+        cls: Type[T],
         path: str,
         name: str,
-        reverse_url_seperator="->",
-        **initkwargs,
+        reverse_url_seperator: str = "->",
+        **initkwargs: Any,  # noqa
     ) -> list[URLPattern]:
         # get methods that starts with hx_
         actions: list[str] = [
@@ -47,7 +50,7 @@ class HTMXViewMixin:
                 getattr(cls, attr)
             ).parameters
 
-            skip_params = {"self", "request"}
+            skip_params = {"self", "request", "_request"}
             url_params = []
 
             for param_name, signature in method_parameters.items():

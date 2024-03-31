@@ -5,7 +5,7 @@ description = "Build & Manage HTMX views with ease"
 authors = ["Waseem Akram"]
 license = "MIT"
 readme = "README.md"
-packages = [{ include = 'django-htmx-view' }]
+packages = [{ include = 'htmx_view' }]
 
 [tool.poetry.dependencies]
 python = ">3.9"

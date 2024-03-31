@@ -270,3 +270,5 @@ data/*
 backups/
 
 example/.venv
+dist/
+dist

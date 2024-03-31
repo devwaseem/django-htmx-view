@@ -58,8 +58,8 @@ class TodoView(HTMXViewMixin, View):
         )
 
     @register_htmx_view(method="POST")
-    def hx_toggle(self, request: HttpRequest, id: int) -> HttpResponse:
-        todo = get_object_or_404(TodoItem, id=id)
+    def hx_toggle(self, request: HttpRequest, todo_id: int) -> HttpResponse:
+        todo = get_object_or_404(TodoItem, id=todo_id)
         todo.is_done = not todo.is_done
         todo.save()
         return render(
@@ -69,8 +69,8 @@ class TodoView(HTMXViewMixin, View):
         )
 
     @register_htmx_view(method="POST")
-    def hx_delete(self, request: HttpRequest, id: int) -> HttpResponse:
-        todo = get_object_or_404(TodoItem, id=id)
+    def hx_delete(self, _request: HttpRequest, todo_id: int) -> HttpResponse:
+        todo = get_object_or_404(TodoItem, id=todo_id)
         todo.is_done = not todo.is_done
         todo.delete()
         return HttpResponse("", status=204)

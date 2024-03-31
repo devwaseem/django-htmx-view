@@ -8,7 +8,7 @@ readme = "README.md"
 packages = [{ include = 'htmx_view' }]
 
 [tool.poetry.dependencies]
-python = ">3.9"
+python = ">=3.9"
 Django = ">=3.2"
 
 

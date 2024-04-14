@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-htmx-view"
-version = "0.0.3"
+version = "0.1.1"
 description = "Build & Manage HTMX views with ease"
 authors = ["Waseem Akram <waseem07799@gmail.com>"]
 license = "MIT"
